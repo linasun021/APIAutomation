@@ -1,0 +1,6 @@
+{
+  "TestBaseUrl": "https://reqres.in/",
+  "SITBaseUrl": "",
+  "UATBaseUrl": "",
+  "Environment":"Test"
+}
