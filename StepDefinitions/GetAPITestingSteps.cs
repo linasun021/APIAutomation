@@ -16,20 +16,20 @@ namespace APIAutomation.StepDefinitions
     [Binding]
     public class GetAPITestingSteps
     {
-        private Apis.Apis baseApiTests;
+        private Apis.Apis apis;
         private RestResponse response;
         private CreatedUser createdUser;
 
         [Given(@"I have baseurl")]
         public void GivenIHaveBaseurl()
         {
-            baseApiTests = new Apis.Apis();
+            apis = new Apis.Apis();
         }
 
-        [When(@"I send rquest to get all users")]
-        public void WhenISendRquestToGetAllUers()
+        [When(@"I send request to get all users")]
+        public void WhenISendRequestToGetAllUers()
         {
-            response = baseApiTests.GetUsers();
+            response = apis.GetUsers();
         }
 
         [Then(@"User ""([^""]*)"" should be included")]
@@ -40,10 +40,10 @@ namespace APIAutomation.StepDefinitions
             Assert.IsNotNull(userData, $"{ userFullName} should be quried");
         }
 
-        [When(@"I send rquest to get single user (.*)")]
-        public void WhenISendRquestToGetSingleUser(int userId)
+        [When(@"I send request to get single user (.*)")]
+        public void WhenISendRequestToGetSingleUser(int userId)
         {
-            response = baseApiTests.GetSingleUser(userId);
+            response = apis.GetSingleUser(userId);
         }
 
         [Then(@"User ""([^""]*)"" detail info will show")]
@@ -59,10 +59,10 @@ namespace APIAutomation.StepDefinitions
             CommonStepMethods.AssertStatusCode(response, statusCode);
         }
 
-        [When(@"I send rquest to get resource (.*)")]
-        public void WhenISendRquestToGetNotExistResource(int resourceId)
+        [When(@"I send request to get resource (.*)")]
+        public void WhenISendRequestToGetNotExistResource(int resourceId)
         {
-            response = baseApiTests.GetSingleResouce(resourceId);
+            response = apis.GetSingleResouce(resourceId);
         }
 
 

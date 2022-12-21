@@ -31,55 +31,55 @@ namespace APIAutomation.StepDefinitions
         }
 
 
-        [When(@"I send rquest to create a user")]
-        public void WhenISendRquestToCreateAUser()
+        [When(@"I send request to create a user")]
+        public void WhenISendRequestToCreateAUser()
         {
             response = baseApiTests.CreateNewUser(createdUser);
         }
 
-        [Then(@"User ""([^""]*)"" has been created")]
-        public void ThenUserHasBeenCreated(string name)
+        [Then(@"User ""([^""]*)"" is created")]
+        public void ThenUserIsCreated(string name)
         {
             CreatedUser responseUser = ContentHandler.GetContent<CreatedUser>(response);
             Assert.AreEqual(name, responseUser.name, $"{name} should be created");
         }
 
-        [Given(@"I want registe with email ""([^""]*)"" and password ""([^""]*)""")]
-        public void GivenIWantRegisteWithEmailAndPassword(string email, string password)
+        [Given(@"I want to register with email ""([^""]*)"" and password ""([^""]*)""")]
+        public void GivenIWantToRegisterWithEmailAndPassword(string email, string password)
         {
             register = new Register();
             register.email = email;
             register.password = password;
         }
 
-        [When(@"I send rquest to registe")]
-        public void WhenISendRquestToRegiste()
+        [When(@"I send request to register")]
+        public void WhenISendRequestToRegister()
         {
             response = baseApiTests.Register(register);
         }
 
-        [Then(@"User with Id (.*) and token ""([^""]*)"" registe successfully")]
-        public void ThenUserWithIdAndTokenRegisteSuccessfully(int id, string token)
+        [Then(@"User with Id (.*) and token ""([^""]*)"" is registered successfully")]
+        public void ThenUserWithIdAndTokenIsRegisteredSuccessfully(int id, string token)
         {
             RegisterResp registerResp = ContentHandler.GetContent<RegisterResp>(response);
             Assert.AreEqual(id, registerResp.id, $"id should be {id}");
             Assert.AreEqual(token, registerResp.token, $"token should be {token}");
         }
 
-        [Then(@"I got error message ""([^""]*)""")]
-        public void ThenIGotErrorMessage(string errorMessage)
+        [Then(@"I get error message ""([^""]*)""")]
+        public void ThenIGetErrorMessage(string errorMessage)
         {
             RegisteFailedResp registeFailedResp = ContentHandler.GetContent<RegisteFailedResp>(response);
             Assert.AreEqual(errorMessage, registeFailedResp.error, $"error should be {errorMessage}");
         }
 
-        [Then(@"I got status code (.*)")]
-        public void ThenIGotStatusCode(int statusCode)
+        [Then(@"I get status code (.*)")]
+        public void ThenIGetStatusCode(int statusCode)
         {
             CommonStepMethods.AssertStatusCode(response, statusCode);
         }
 
-        [Given(@"I want login with email ""([^""]*)"" and password ""([^""]*)""")]
+        [Given(@"I want to login with email ""([^""]*)"" and password ""([^""]*)""")]
         public void GivenIWantLoginWithEmailAndPassword(string email, string password)
         {
             login  = new Login();
@@ -89,8 +89,8 @@ namespace APIAutomation.StepDefinitions
         }
 
 
-        [When(@"I send rquest to login")]
-        public void WhenISendRquestToLogin()
+        [When(@"I send request to login")]
+        public void WhenISendRequestToLogin()
         {
             response = baseApiTests.Login(login);
         }
