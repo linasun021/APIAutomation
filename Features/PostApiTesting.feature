@@ -5,21 +5,21 @@ Verify all Post Apis
 @tag1
 Scenario: Create user verification
     Given I have user name "morpheus" and job "leader"
-	When I send rquest to create a user
-	Then User "morpheus" has been created
+	When I send request to create a user
+	Then User "morpheus" is created
 
 Scenario: Register successful verification
-    Given I want registe with email "eve.holt@reqres.in" and password "pistol"
-	When I send rquest to registe
-	Then User with Id 4 and token "QpwL5tke4Pnpja7X4" registe successfully
+    Given I want to register with email "eve.holt@reqres.in" and password "pistol"
+	When I send request to register
+	Then User with Id 4 and token "QpwL5tke4Pnpja7X4" is registered successfully
 
 Scenario: Register unsuccessful verification
-    Given I want registe with email "sydney@fife" and password ""
-	When I send rquest to registe
-	Then I got status code 400
-	And I got error message "Missing password"
+    Given I want to register with email "sydney@fife" and password ""
+	When I send request to register
+	Then I get status code 400
+	And I get error message "Missing password"
 
 Scenario: Login successful verification
-    Given I want login with email "eve.holt@reqres.in" and password "cityslicka"
-	When I send rquest to login
+    Given I want to login with email "eve.holt@reqres.in" and password "cityslicka"
+	When I send request to login
 	Then Login successfully with token "QpwL5tke4Pnpja7X4"
