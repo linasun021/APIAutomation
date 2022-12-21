@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace APIAutomation.Apis
 {
-    public class BaseApiTests
+    public class Apis
     {
         public RestResponse GetUsers()
         {
@@ -18,21 +18,15 @@ namespace APIAutomation.Apis
             return response;
         }
 
-        public RestResponse GetSingleUser()
+        public RestResponse GetSingleUser(int userId)
         {
-            RestResponse response = new RequestHandler().GetResponse("api/users/2", Method.Get).Result;
+            RestResponse response = new RequestHandler().GetResponse("api/users/"+userId, Method.Get).Result;
             return response;
         }
 
-        public RestResponse SingleUserNotFound()
+        public RestResponse GetSingleResouce(int resourceId)
         {
-            RestResponse response =new RequestHandler().GetResponse("api/users/23", Method.Get).Result;
-            return response;
-        }
-
-        public RestResponse SingleResouceNotFound()
-        {
-            RestResponse response = new RequestHandler().GetResponse("api/unknown/23", Method.Get).Result;
+            RestResponse response = new RequestHandler().GetResponse("api/unknown/"+resourceId, Method.Get).Result;
             return response;
         }
 
@@ -41,9 +35,9 @@ namespace APIAutomation.Apis
             RestResponse response = new RequestHandler().GetResponse("api/users", Method.Post, ContentHandler.SerializeJsonString(payload)).Result;
             return response;
         }
-        public RestResponse DeleteUser()
+        public RestResponse DeleteUser(int userId)
         {
-            RestResponse response = new RequestHandler().GetResponse("api/users/2", Method.Delete).Result;
+            RestResponse response = new RequestHandler().GetResponse("api/users/"+userId, Method.Delete).Result;
             return response;
         }
 
