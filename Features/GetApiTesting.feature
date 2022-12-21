@@ -6,25 +6,29 @@ Verify all get Apis
 Scenario Outline: List Users verification
 	Given I have baseurl
 	When I send rquest to get all users
-	Then User "<UserQuaried>" should be included
+	Then User "<userQuaried>" should be included
 
 Examples: 
-    | UserQuaried      |
+    | userQuaried      |
     | Lindsay Ferguson |
     | Michael Lawson   |
 
 
-Scenario: Single User verification
+Scenario Outline: Single User verification
 	Given I have baseurl
-	When I send rquest to get single user
-	Then User "Janet" detail info will show
+	When I send rquest to get single user <userId>
+	Then User "<userName>" detail info will show
+Examples: 
+     | userId | userName |
+     | 2      | Janet    |
+     | 3      | Emma     |
 
 Scenario: Single User not found verification
 	Given I have baseurl
-	When I send rquest to get not exist single user
+	When I send rquest to get single user 23
 	Then The status code should be 404
 
 Scenario: Single resource not found verification
 	Given I have baseurl
-	When I send rquest to get not exist resource
+	When I send rquest to get resource 23
 	Then The status code should be 404
