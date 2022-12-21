@@ -13,19 +13,19 @@ namespace APIAutomation.StepDefinitions
     [Binding]
     public class DeleteApiTestingSteps
     {
-        private BaseApiTests baseApiTests;
+        private Apis.Apis baseApiTests;
         private RestResponse response;
 
         [Given(@"I have a user")]
         public void GivenIHaveAUser()
         {
-            baseApiTests= new BaseApiTests();
+            baseApiTests = new Apis.Apis();
         }
 
-        [When(@"I send rquest to delte a user")]
-        public void WhenISendRquestToDelteAUser()
+        [When(@"I send rquest to delete user (.*)")]
+        public void WhenISendRquestToDeleteUser(int userId)
         {
-            response = baseApiTests.DeleteUser();
+            response = baseApiTests.DeleteUser(userId);
         }
 
         [Then(@"Response status code should be (.*)")]

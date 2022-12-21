@@ -16,14 +16,14 @@ namespace APIAutomation.StepDefinitions
     [Binding]
     public class GetAPITestingSteps
     {
-        private BaseApiTests baseApiTests;
+        private Apis.Apis baseApiTests;
         private RestResponse response;
         private CreatedUser createdUser;
 
         [Given(@"I have baseurl")]
         public void GivenIHaveBaseurl()
         {
-            baseApiTests = new BaseApiTests();
+            baseApiTests = new Apis.Apis();
         }
 
         [When(@"I send rquest to get all users")]
@@ -40,10 +40,10 @@ namespace APIAutomation.StepDefinitions
             Assert.IsNotNull(userData, $"{ userFullName} should be quried");
         }
 
-        [When(@"I send rquest to get single user")]
-        public void WhenISendRquestToGetSingleUser()
+        [When(@"I send rquest to get single user (.*)")]
+        public void WhenISendRquestToGetSingleUser(int userId)
         {
-            response = baseApiTests.GetSingleUser();
+            response = baseApiTests.GetSingleUser(userId);
         }
 
         [Then(@"User ""([^""]*)"" detail info will show")]
@@ -53,22 +53,16 @@ namespace APIAutomation.StepDefinitions
             Assert.AreEqual(firstName,user.data.first_name, $"{firstName} should be showing");
         }
 
-        [When(@"I send rquest to get not exist single user")]
-        public void WhenISendRquestToGetNotExistSingleUser()
-        {
-            response = baseApiTests.SingleUserNotFound();
-        }
-
         [Then(@"The status code should be (.*)")]
         public void ThenTheStatusCodeShouldBe(int statusCode)
         {
             CommonStepMethods.AssertStatusCode(response, statusCode);
         }
 
-        [When(@"I send rquest to get not exist resource")]
-        public void WhenISendRquestToGetNotExistResource()
+        [When(@"I send rquest to get resource (.*)")]
+        public void WhenISendRquestToGetNotExistResource(int resourceId)
         {
-            response = baseApiTests.SingleResouceNotFound();
+            response = baseApiTests.GetSingleResouce(resourceId);
         }
 
 

@@ -12,7 +12,7 @@ namespace APIAutomation.StepDefinitions
     [Binding]
     public class PostApiTestingSteps
     {
-        private BaseApiTests baseApiTests;
+        private Apis.Apis baseApiTests;
         private RestResponse response;
         private CreatedUser createdUser;
         private Register register;
@@ -20,7 +20,7 @@ namespace APIAutomation.StepDefinitions
 
         public PostApiTestingSteps()
         {
-            baseApiTests = new BaseApiTests();
+            baseApiTests = new Apis.Apis();
         }
         [Given(@"I have user name ""([^""]*)"" and job ""([^""]*)""")]
         public void GivenIHaveUserNameAndJob(string name, string job)
@@ -31,8 +31,8 @@ namespace APIAutomation.StepDefinitions
         }
 
 
-        [When(@"I send rquest to create a users")]
-        public void WhenISendRquestToCreateAUsers()
+        [When(@"I send rquest to create a user")]
+        public void WhenISendRquestToCreateAUser()
         {
             response = baseApiTests.CreateNewUser(createdUser);
         }
@@ -52,8 +52,8 @@ namespace APIAutomation.StepDefinitions
             register.password = password;
         }
 
-        [When(@"I send rquest to regist")]
-        public void WhenISendRquestToRegist()
+        [When(@"I send rquest to registe")]
+        public void WhenISendRquestToRegiste()
         {
             response = baseApiTests.Register(register);
         }
@@ -95,8 +95,8 @@ namespace APIAutomation.StepDefinitions
             response = baseApiTests.Login(login);
         }
 
-        [Then(@"Login successful with token ""([^""]*)""")]
-        public void ThenLoginSuccessfulWithToken(string token)
+        [Then(@"Login successfully with token ""([^""]*)""")]
+        public void ThenLoginSuccessfullyWithToken(string token)
         {
             LoginResp loginResp = ContentHandler.GetContent<LoginResp>(response);
             Assert.AreEqual(token, loginResp.token, $"token should be {token}");
